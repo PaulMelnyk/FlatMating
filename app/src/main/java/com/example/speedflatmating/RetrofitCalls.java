@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitCalls {
 
     private static Retrofit retrofit;
-    private static final String URL = "https://api.jsonbin.io/b/5c6a9becf73bfe1ce3ed01bf";
+    private static final String URL = "https://api.jsonbin.io/";
 
     public static Retrofit getRetrofit() {
         if(retrofit == null) {

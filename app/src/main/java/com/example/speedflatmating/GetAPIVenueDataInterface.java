@@ -4,14 +4,10 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 
 public interface GetAPIVenueDataInterface {
 
-    @GET()
-    Call<VenueList> getAPIVenueData();
-
-    @GET("group/{imageUrl}/users")
-    Call<List<Venue>> groupList(@Path("imageUrl") String groupImage);
+    @GET("b/5c6a9becf73bfe1ce3ed01bf/")
+    Call<List<Venue>> getAPIVenueData();
 
 }
