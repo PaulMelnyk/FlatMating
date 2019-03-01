@@ -5,13 +5,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.VenueViewHolder>{
+public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.VenueViewHolder> {
 
     private ArrayList<Venue> dataList;
+    private EventDateFormatter eventDateFormatter = new EventDateFormatter();
+
 
     public VenueAdapter(ArrayList<Venue> dataList) {
         this.dataList = dataList;
@@ -26,9 +31,13 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.VenueViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VenueAdapter.VenueViewHolder venueViewHolder, int position) {
-        venueViewHolder.testingTextView.setText(dataList.get(position).getImageUrl());
+    public void onBindViewHolder(@NonNull VenueAdapter.VenueViewHolder holder, int position) {
+        final Venue currentVenueInfo = dataList.get(position);
 
+        Picasso.get().load(currentVenueInfo.getImageUrl()).fit().centerCrop().into(holder.venueImage);
+        holder.priceText.setText(currentVenueInfo.getCost());
+        holder.locationText.setText(currentVenueInfo.getLocation() + "\n" + currentVenueInfo.getVenue());
+        holder.timeText.setText(eventDateFormatter.displayDateTime(currentVenueInfo));
     }
 
     @Override
@@ -38,12 +47,17 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.VenueViewHol
 
     class VenueViewHolder extends RecyclerView.ViewHolder {
 
-        TextView testingTextView;
+        ImageView venueImage;
+        TextView priceText, locationText, timeText;
 
-        VenueViewHolder(View itemView) {
+
+        public VenueViewHolder(View itemView) {
             super(itemView);
-            testingTextView =  itemView.findViewById(R.id.textView);
-        }
+            venueImage = itemView.findViewById(R.id.venueImage);
 
+            priceText = itemView.findViewById(R.id.priceText);
+            locationText = itemView.findViewById(R.id.locationText);
+            timeText = itemView.findViewById(R.id.timeText);
+        }
     }
 }

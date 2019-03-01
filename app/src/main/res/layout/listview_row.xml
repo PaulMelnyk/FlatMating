@@ -1,24 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardElevation="3dp"
+    card_view:cardUseCompatPadding="true">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="291dp"
-        android:layout_height="175dp"
-        app:srcCompat="@android:drawable/btn_dialog"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="103dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:padding="5dp">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="277dp"
-        android:layout_height="60dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="291dp" />
-</android.support.constraint.ConstraintLayout>
+        <ImageView
+            android:id="@+id/venueImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:srcCompat="@android:drawable/ic_menu_report_image" />
+
+        <TextView
+            android:id="@+id/priceText"
+            android:layout_width="90dp"
+            android:layout_height="38dp"
+            android:layout_alignEnd="@id/venueImage"
+            android:layout_alignRight="@id/venueImage"
+            android:background="@drawable/text_drawable"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/timeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/venueImage"
+            android:layout_alignRight="@id/venueImage"
+            android:layout_alignBottom="@id/venueImage"
+            android:padding="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/locationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/venueImage"
+            android:padding="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

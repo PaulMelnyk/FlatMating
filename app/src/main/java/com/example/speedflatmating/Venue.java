@@ -15,24 +15,24 @@ public class Venue {
     @SerializedName("venue")
     private String venue;
 
+    @SerializedName("startTime")
+    private String startTime;
+
+    @SerializedName("endTime")
+    private String endTime;
+
     @SerializedName("cost")
     private String cost;
 
-    @SerializedName("startDate")
-    private Date startDate;
-
-    @SerializedName("endDate")
-    private Date endDate;
-
     public Venue() {}
 
-    public Venue(String imageUrl, String location, String venue, String cost, Date startDate, Date endDate) {
+    public Venue(String imageUrl, String location, String venue, String startTime, String endTime, String cost) {
         this.imageUrl = imageUrl;
         this.location = location;
         this.venue = venue;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.cost = cost;
-        this.startDate = startDate;
-        this.endDate = endDate;
     }
 
     public String getImageUrl() {
@@ -59,6 +59,22 @@ public class Venue {
         this.venue = venue;
     }
 
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
     public String getCost() {
         return cost;
     }
@@ -67,31 +83,15 @@ public class Venue {
         this.cost = cost;
     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
     @Override
     public String toString() {
         return "Venue{" +
                 "imageUrl='" + imageUrl + '\'' +
                 ", location='" + location + '\'' +
                 ", venue='" + venue + '\'' +
+                ", startDate=" + startTime +
+                ", endDate=" + endTime +
                 ", cost='" + cost + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
                 '}';
     }
 }

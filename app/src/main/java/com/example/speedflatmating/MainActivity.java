@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,28 +26,28 @@ public class MainActivity extends AppCompatActivity {
 
         GetAPIVenueDataInterface service = RetrofitCalls.getRetrofit().create(GetAPIVenueDataInterface.class);
 
-        Call<VenueList> call = service.getAPIVenueData();
+        Call<List<Venue>> call = service.getAPIVenueData();
 
         /**Log the URL called*/
         Log.wtf("URL Called", call.request().url() + "");
 
-        call.enqueue(new Callback<VenueList>() {
+        call.enqueue(new Callback<List<Venue>>() {
             @Override
-            public void onResponse(Call<VenueList> call, Response<VenueList> response) {
-                generateNoticeList(response.body().getVenueList());
+            public void onResponse(Call<List<Venue>> call, Response<List<Venue>> response) {
+                generateNoticeList((ArrayList<Venue>) response.body());
             }
 
             @Override
-            public void onFailure(Call<VenueList> call, Throwable t) {
+            public void onFailure(Call<List<Venue>> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Something went wrong...Error message: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     /** Method to generate List of notice using RecyclerView with custom adapter*/
-    private void generateNoticeList(ArrayList<Venue> VenueAdapter) {
-        recyclerView = findViewById(R.id.venueView);
-        adapter = new VenueAdapter(VenueAdapter);
+    private void generateNoticeList(ArrayList<Venue> venueArrayList) {
+        recyclerView = findViewById(R.id.recycler_view_venue_list);
+        adapter = new VenueAdapter(venueArrayList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
