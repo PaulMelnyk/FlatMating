@@ -31,7 +31,8 @@
             android:background="@drawable/text_drawable"
             android:gravity="center_horizontal"
             android:padding="10dp"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/timeText"

@@ -1,7 +1,14 @@
 package com.example.speedflatmating;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableStringBuilder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +17,23 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import static android.support.v4.util.Preconditions.checkArgument;
 
 public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.VenueViewHolder> {
 
     private ArrayList<Venue> dataList;
     private EventDateFormatter eventDateFormatter = new EventDateFormatter();
-
+    private VenueListViewPopulator listViewPopulator = new VenueListViewPopulator();
 
     public VenueAdapter(ArrayList<Venue> dataList) {
         this.dataList = dataList;
     }
-
     @NonNull
     @Override
     public VenueAdapter.VenueViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
@@ -31,18 +43,15 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.VenueViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VenueAdapter.VenueViewHolder holder, int position) {
+    public void onBindViewHolder(final VenueViewHolder holder, int position) {
         final Venue currentVenueInfo = dataList.get(position);
-
-        Picasso.get().load(currentVenueInfo.getImageUrl()).fit().centerCrop().into(holder.venueImage);
-        holder.priceText.setText(currentVenueInfo.getCost());
-        holder.locationText.setText(currentVenueInfo.getLocation() + "\n" + currentVenueInfo.getVenue());
-        holder.timeText.setText(eventDateFormatter.displayDateTime(currentVenueInfo));
+        listViewPopulator.test(holder, currentVenueInfo);
     }
+
 
     @Override
     public int getItemCount() {
-        return 0;
+        return dataList.size();
     }
 
     class VenueViewHolder extends RecyclerView.ViewHolder {

@@ -1,6 +1,8 @@
 package com.example.speedflatmating;
 
 import android.annotation.SuppressLint;
+import android.text.SpannableStringBuilder;
+import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,25 +16,25 @@ public class EventDateFormatter {
     private SimpleDateFormat sdfMonth = new SimpleDateFormat("MMMM");
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
-    public String displayDateTime(Venue v) {
+    private TextFormatter textFormatter = new TextFormatter();
 
-        String finalText = null;
-
+    public void displayDateTime(Venue v, TextView textView) {
         try {
+
             Date start = formatter.parse(v.getStartTime());
             Date end = formatter.parse(v.getEndTime());
-            finalText = displayRunningDate(start) + sdf.format(start) + " - " + sdf.format(end);
+            String timeRunning = sdf.format(start) + " - " + sdf.format(end);
+            textView.setText(textFormatter.setMultiLineText(displayRunningDate(start), timeRunning));
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        return finalText;
     }
 
     private String displayRunningDate(Date eventDate) {
 
         int t = eventDate.getDate();
-        return t + getDayOfMonthSuffix(t) +  " " + sdfMonth.format(eventDate) + "\n";
+        return t + getDayOfMonthSuffix(t) +  " " + sdfMonth.format(eventDate);
     }
 
     @SuppressLint("RestrictedApi")
