@@ -27,6 +27,12 @@ public class TextFormatter {
     public SpannableStringBuilder setMultiLineText(String first, String second) {
 
         return boldFormatter(concatinateStrings(first, second));
+    }
 
+    public String capitalizeFirst(String toCap) {
+        StringBuilder stringBuilder = new StringBuilder(toCap);
+        stringBuilder.setCharAt(0, Character.toUpperCase(stringBuilder.charAt(0)));
+
+        return String.valueOf(stringBuilder);
     }
 }

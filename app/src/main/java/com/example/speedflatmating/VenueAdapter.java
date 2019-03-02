@@ -28,11 +28,16 @@ import static android.support.v4.util.Preconditions.checkArgument;
 public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.VenueViewHolder> {
 
     private ArrayList<Venue> dataList;
+    private Context context;
+
     private EventDateFormatter eventDateFormatter = new EventDateFormatter();
     private VenueListViewPopulator listViewPopulator = new VenueListViewPopulator();
+    private boolean isExpired;
 
-    public VenueAdapter(ArrayList<Venue> dataList) {
+    public VenueAdapter(ArrayList<Venue> dataList, boolean isExpired, Context context) {
         this.dataList = dataList;
+        this.isExpired = isExpired;
+        this.context = context;
     }
     @NonNull
     @Override
@@ -45,7 +50,14 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.VenueViewHol
     @Override
     public void onBindViewHolder(final VenueViewHolder holder, int position) {
         final Venue currentVenueInfo = dataList.get(position);
-        listViewPopulator.test(holder, currentVenueInfo);
+
+        if(isExpired) {
+            holder.expiredText.setVisibility(View.VISIBLE);
+        } else {
+            holder.expiredText.setVisibility(View.INVISIBLE);
+        }
+
+        listViewPopulator.populateVenue(holder, currentVenueInfo, context);
     }
 
 
@@ -57,12 +69,13 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.VenueViewHol
     class VenueViewHolder extends RecyclerView.ViewHolder {
 
         ImageView venueImage;
-        TextView priceText, locationText, timeText;
+        TextView priceText, locationText, timeText, expiredText;
 
 
         public VenueViewHolder(View itemView) {
             super(itemView);
             venueImage = itemView.findViewById(R.id.venueImage);
+            expiredText = itemView.findViewById(R.id.expiredText);
 
             priceText = itemView.findViewById(R.id.priceText);
             locationText = itemView.findViewById(R.id.locationText);

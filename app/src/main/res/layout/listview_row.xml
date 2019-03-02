@@ -30,7 +30,7 @@
             android:layout_alignRight="@id/venueImage"
             android:background="@drawable/text_drawable"
             android:gravity="center_horizontal"
-            android:padding="10dp"
+            android:padding="6dp"
             android:textColor="@android:color/white"
             android:textSize="16sp"/>
 
@@ -53,6 +53,18 @@
             android:padding="5dp"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/expiredText"
+            android:background="@color/greyTransparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Expired"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            android:textSize="60sp"/>
 
 
     </RelativeLayout>
