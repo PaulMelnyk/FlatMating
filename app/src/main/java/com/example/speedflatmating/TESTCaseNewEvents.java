@@ -1,17 +1,17 @@
 package com.example.speedflatmating;
 
-import java.lang.reflect.Array;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
+/**
+ *  testing cases for venues with upcoming dates
+ */
 public class TESTCaseNewEvents {
 
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-
-    public ArrayList<Venue> createUpcomingEvents(Venue v) throws ParseException {
+    /**
+     * @param v used to replicate imge
+     * @return full arraylist of new venues, with later dates
+     */
+    public ArrayList<Venue> createUpcomingEvents(Venue v) {
         ArrayList<Venue> newEvents = new ArrayList<>();
 
         for (int i = 10; i< 15; i++) {

@@ -21,21 +21,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /** Create handle for the RetrofitInstance interface*/
-        GetAPIVenueDataInterface service = RetrofitCalls.getRetrofit().create(GetAPIVenueDataInterface.class);
-
-        /** Call the method with parameter in the interface to get the notice data*/
-        Call<List<Venue>> call = service.getAPIVenueData();
-
-        /**Log the URL called*/
-        Log.wtf("URL Called", call.request().url() + "");
+        GetAPIVenueDataInterface service = RetrofitCalls.getRetrofit().create(GetAPIVenueDataInterface.class); //retrofit handler for API call
+        Call<List<Venue>> call = service.getAPIVenueData(); // collect venue data from interface
+        Log.wtf("URL ", call.request().url() + ""); // log url called
 
         call.enqueue(new Callback<List<Venue>>() {
             @Override
             public void onResponse(Call<List<Venue>> call, Response<List<Venue>> response) {
-                ArrayList<Venue> allVenues = (ArrayList<Venue>) response.body();
-
-                onScreenSetters.test(allVenues, MainActivity.this, getApplication());
+                ArrayList<Venue> allVenues = (ArrayList<Venue>) response.body(); //holds complete venue lists
+                onScreenSetters.compileDisplay(allVenues, MainActivity.this, getApplication());
             }
 
             @Override

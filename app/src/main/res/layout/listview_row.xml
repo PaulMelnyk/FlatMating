@@ -32,7 +32,7 @@
             android:gravity="center_horizontal"
             android:padding="6dp"
             android:textColor="@android:color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/timeText"
@@ -56,15 +56,15 @@
 
         <TextView
             android:id="@+id/expiredText"
-            android:background="@color/greyTransparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Expired"
+            android:layout_centerVertical="true"
+            android:background="@color/greyTransparent"
             android:gravity="center"
             android:padding="10dp"
-            android:layout_centerVertical="true"
+            android:text="Expired"
             android:textColor="@android:color/white"
-            android:textSize="60sp"/>
+            android:textSize="60sp" />
 
 
     </RelativeLayout>

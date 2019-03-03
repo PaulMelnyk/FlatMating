@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+/**
+ * Object to hold information collected from API
+ */
 public class Venue {
 
     @SerializedName("imageUrl")
@@ -25,15 +28,6 @@ public class Venue {
     private String cost;
 
     public Venue() {}
-
-    public Venue(String imageUrl, String location, String venue, String startTime, String endTime, String cost) {
-        this.imageUrl = imageUrl;
-        this.location = location;
-        this.venue = venue;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.cost = cost;
-    }
 
     public String getImageUrl() {
         return imageUrl;
