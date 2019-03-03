@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SpeedFlatMating</string>
+    <string name="expire_tag">Expired</string>
+
+    <string name="button_upcoming">Upcoming</string>
+    <string name="button_archive">Archived</string>
+
+    <string name="image_description">Image Of Venue</string>
 </resources>
